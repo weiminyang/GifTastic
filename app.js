@@ -61,7 +61,7 @@ function displayInfo() {
   });
 
   // Adding a click event listener to all elements with a class of "topic-btn"
-  $(document).on("click", ".topic-btn", displaytopicInfo);
+  $(document).on("click", ".topic-btn", displayInfo);
 
   // Calling the renderButtons function to display the intial buttons
   renderButtons();
