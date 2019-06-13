@@ -33,13 +33,9 @@ function displayInfo() {
 
   }
   $(".gif").on("click", function() {
-    console.log("123");
-    // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+    
     var state = $(this).attr("data-state");
-   
-    // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-    // Then, set the image's data-state to animate
-    // Else set src to the data-still value
+    console.log("asdf");
     if (state === "still") {
       $(this).attr("src", $(this).attr("data-animate"));
       $(this).attr("data-state", "animate");
@@ -50,40 +46,19 @@ function displayInfo() {
   });
   function renderButtons() {
     $("#buttons").empty();
-
-    // Looping through the array of topics
     for (var i = 0; i < topics.length; i++) {
-
-      // Then dynamicaly generating buttons for each topic in the array
-      // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
       var a = $("<button>");
-      // Adding a class of topic-btn to our button
       a.addClass("topic-btn btn btn-warning btn-lg mx-2 my-2");
-      // Adding a data-attribute
       a.attr("data-name", topics[i]); 
-      
-      // Providing the initial button text
       a.text(topics[i]);
-      // Adding the button to the buttons div
       $("#buttons").append(a);
     }
   }
-
-  // This function handles events where a topic button is clicked
   $("#add-topic").on("click", function(event) {
     event.preventDefault();
-    // This line grabs the input from the textbox
     var topic = $("#topic-input").val().trim();
-
-    // Adding topic from the textbox to our array
     topics.push(topic);
-
-    // Calling renderButtons which handles the processing of our topic array
     renderButtons();
   });
-
-  // Adding a click event listener to all elements with a class of "topic-btn"
   $(document).on("click", ".topic-btn", displayInfo);
-
-  // Calling the renderButtons function to display the intial buttons
   renderButtons();
