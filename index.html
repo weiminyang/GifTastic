@@ -8,34 +8,34 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <div class="container">
         <div class="row my-3 bg-success">
             <h1 class="mx-auto">GifTastic!</h1>
         </div>
         <div class="row bg-info min-vh-40">
             <div class="col-sm-9 ">
-                    <div id="buttons"></div>
-                  
+                <div id="buttons"></div>
+                
             </div>
             <div class="col-sm-3">
-                    <h2>Add An Animal</h2>
-                    <form id="topic-form">
-                      <label for="topic-input"></label>
-                      <input type="text" id="topic-input">
-                      <br><br>
-                      <input id="add-topic" type="submit" value="submit!" class="bg-success">
-                    </form>
-                    
+                <h2>Add An Animal</h2>
+                <form id="topic-form">
+                    <label for="topic-input"></label>
+                    <input type="text" id="topic-input">
+                    <br><br>
+                    <input id="add-topic" type="submit" value="submit!" class="bg-success">
+                </form>
+                
             </div>
         </div>
-        <div class="row bg-info min-vh-100">
-                <div id="topics"></div>
+        <div id="topicsArea" class="row bg-info min-vh-100">
+            <div id="topics"></div>
         </div>
     </div>
-        
-
-
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
 
 </body>

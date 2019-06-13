@@ -1,4 +1,16 @@
 var topics=["cat","dog","duck","panda"];
+  $("#topicsArea").on("click", ".gif", function(event) {
+    event.preventDefault();
+    var state = $(this).attr("data-state");
+    console.log("asdf");
+    if (state === "still") {
+      $(this).attr("src", $(this).attr("data-animate"));
+      $(this).attr("data-state", "animate");
+    } else {
+      $(this).attr("src", $(this).attr("data-still"));
+      $(this).attr("data-state", "still");
+    }
+  });
 function displayInfo() {
 
     var topic = $(this).attr("data-name");
@@ -32,18 +44,6 @@ function displayInfo() {
     });
 
   }
-  $(".gif").on("click", function() {
-    
-    var state = $(this).attr("data-state");
-    console.log("asdf");
-    if (state === "still") {
-      $(this).attr("src", $(this).attr("data-animate"));
-      $(this).attr("data-state", "animate");
-    } else {
-      $(this).attr("src", $(this).attr("data-still"));
-      $(this).attr("data-state", "still");
-    }
-  });
   function renderButtons() {
     $("#buttons").empty();
     for (var i = 0; i < topics.length; i++) {
