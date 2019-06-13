@@ -10,23 +10,44 @@ function displayInfo() {
       url: queryURL,
       method: "GET"
     }).then(function(response) {
-      var topicDiv = $("<div class='topic'>");
-      var rating = response.Rated;
-      var pOne = $("<p>").text("Rating: " + rating);
-      topicDiv.append(pOne);
-      var released = response.Released;
-      var pTwo = $("<p>").text("Released: " + released);
-      topicDiv.append(pTwo);
-      var plot = response.Plot;
-      var pThree = $("<p>").text("Plot: " + plot);
-      topicDiv.append(pThree);
-      var imgURL = response.Poster;
-      var image = $("<img>").attr("src", imgURL);
-      topicDiv.append(image);
-      $("#topics").prepend(topicDiv);
+      console.log(response);
+      var result=response.data;
+      for (var i = 0; i < result.length; i++){
+
+        var topicDiv = $("<div class='topic float-left mx-2 my-2'>");
+        
+        var imgURL = result[i].images.fixed_height.url;
+        var imgStillURL = result[i].images.fixed_height_still.url;
+        var image = $("<img>").attr("src", imgURL);
+        image.attr("data-state","animate");
+        image.attr("data-animate",imgURL);
+        image.attr("data-still",imgStillURL);
+        image.addClass("gif");
+        topicDiv.append(image);
+        var rating = result[i].rating;
+        var p = $("<p>").text("Rating: " + rating);
+        topicDiv.append(p);
+        $("#topics").prepend(topicDiv);
+      }
     });
 
   }
+  $(".gif").on("click", function() {
+    console.log("123");
+    // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+    var state = $(this).attr("data-state");
+   
+    // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+    // Then, set the image's data-state to animate
+    // Else set src to the data-still value
+    if (state === "still") {
+      $(this).attr("src", $(this).attr("data-animate"));
+      $(this).attr("data-state", "animate");
+    } else {
+      $(this).attr("src", $(this).attr("data-still"));
+      $(this).attr("data-state", "still");
+    }
+  });
   function renderButtons() {
     $("#buttons").empty();
 
@@ -37,9 +58,10 @@ function displayInfo() {
       // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
       var a = $("<button>");
       // Adding a class of topic-btn to our button
-      a.addClass("topic-btn");
+      a.addClass("topic-btn btn btn-warning btn-lg mx-2 my-2");
       // Adding a data-attribute
-      a.attr("data-name", topics[i]);
+      a.attr("data-name", topics[i]); 
+      
       // Providing the initial button text
       a.text(topics[i]);
       // Adding the button to the buttons div
